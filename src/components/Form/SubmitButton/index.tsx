@@ -3,6 +3,7 @@ import { RectButtonProps } from 'react-native-gesture-handler'
 import styles from './styles'
 
 const {
+  Main,
   Container,
   Title
 } = styles
@@ -12,10 +13,12 @@ export interface SubmitButtonProps extends RectButtonProps {
   onPress: () => void
 }
 
-export function SubmitButton({ title, ...rest }: SubmitButtonProps) {
+export function SubmitButton({ title, onPress, ...rest }: SubmitButtonProps) {
   return (
-    <Container {...rest}>
-      <Title>{ title }</Title>
-    </Container>
+    <Main>
+      <Container onPress={onPress} {...rest}>
+        <Title>{ title }</Title>
+      </Container>
+    </Main>
   )
 }

@@ -1,4 +1,4 @@
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 import styled from "styled-components/native";
@@ -14,7 +14,7 @@ export const Containeer = styled.Text`
 
 export default {
 
-Container: styled.View<BtnType>`
+Main: styled.View<BtnType>`
   width: 48%;
 
   /* is the same as:
@@ -30,6 +30,10 @@ Container: styled.View<BtnType>`
     isActive && type === 'up' ? theme.colors.success_light : 
     isActive && type === 'down' ? theme.colors.attention_light : theme.colors.shape
   };
+`,
+
+Container: styled(GestureHandlerRootView)`
+  width: 100%;
 `,
 
 Button: styled(RectButton)`

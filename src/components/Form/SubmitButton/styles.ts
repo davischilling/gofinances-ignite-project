@@ -4,12 +4,16 @@ import styled from "styled-components/native";
 
 export default {
 
-Container: styled(RectButton)<RectButtonProps>`
+Main: styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.secondary};
   
   padding: 18px;
   border-radius: 5px;
+`,
+
+Container: styled(RectButton)<RectButtonProps>`
+  width: 100%;
   align-items: center;
 `,
 
