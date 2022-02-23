@@ -14,7 +14,7 @@ export const Containeer = styled.Text`
 
 export default {
 
-Main: styled.View<BtnType>`
+Container: styled(GestureHandlerRootView)<BtnType>`
   width: 48%;
 
   /* is the same as:
@@ -30,10 +30,6 @@ Main: styled.View<BtnType>`
     isActive && type === 'up' ? theme.colors.success_light : 
     isActive && type === 'down' ? theme.colors.attention_light : theme.colors.shape
   };
-`,
-
-Container: styled(GestureHandlerRootView)`
-  width: 100%;
 `,
 
 Button: styled(RectButton)`

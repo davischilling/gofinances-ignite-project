@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 import { SubmitButton } from '../../../components'
-import { categories } from '../../../utils'
+import { categories } from '../../../mocked'
 import styles from './styles'
 
 const {

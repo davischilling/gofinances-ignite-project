@@ -5,18 +5,15 @@ import styled from "styled-components/native"
 
 export default {
 
-Main: styled.View`
-  background-color: ${({ theme }) => theme.colors.shape };
-
-  border-radius: 5px;
-`,
-
 Container: styled(RectButton)`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 18px 16px;
+  background-color: ${({ theme }) => theme.colors.shape };
+  
+  border-radius: 5px;
 `,
 
 Category: styled.Text`

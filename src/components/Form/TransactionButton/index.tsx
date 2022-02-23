@@ -3,7 +3,6 @@ import { RectButtonProps } from 'react-native-gesture-handler'
 
 import styles from './styles'
 const {
-  Main,
   Container,
   Button,
   Icon,
@@ -27,13 +26,11 @@ const icons = {
 
 export function TransactionButton({ title, type, isActive, ...rest }: TransactionButtonProps) {
   return (
-    <Main isActive={isActive} type={type as any}>
-      <Container>
+      <Container isActive={isActive} type={type as any}>
         <Button {...rest}>
           <Icon name={icons[type]} type={type} />
           <Title>{title}</Title>
         </Button>
       </Container>
-    </Main>
   )
 }

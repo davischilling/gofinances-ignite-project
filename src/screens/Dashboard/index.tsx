@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HightlighCard, Transaction, TransactionCard } from '../../components'
 import styles from './styles'
+import {
+  // deleteCollectionAsyncStorage,
+  getCollectionAsyncStorage, GoFinancesKeys
+} from '../../utils'
 
 const {
   Container,
@@ -57,6 +61,17 @@ export function Dashboard() {
     },
     date: '05/05/2020'
   }]
+
+  useEffect(() => {
+    const loadData = async () => {
+      console.log(await getCollectionAsyncStorage(GoFinancesKeys.transactions));
+    }
+    loadData()
+    // const removeCollection = async () => {
+    //   await deleteCollectionAsyncStorage(dataKey)
+    // }
+    // removeCollection()
+  }, [])
 
   return (
     <Container>

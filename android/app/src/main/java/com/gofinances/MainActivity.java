@@ -7,7 +7,6 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.bridge.JSIModulePackage; // <- add
-import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView; // Linha que deve ser adicionada
 
 import expo.modules.ReactActivityDelegateWrapper;
@@ -37,8 +36,7 @@ public class MainActivity extends ReactActivity {
       new ReactActivityDelegate(this, getMainComponentName()) {  
         @Override // Linha que deve ser adicionada
           protected ReactRootView createRootView() { // Linha que deve ser adicionada
-            return new RNGestureHandlerEnabledRootView(MainActivity.this); // Linha que deve ser adicionada
-            return new ReanimatedJSIModulePackage(); // <- add
+            return new RNGestureHandlerEnabledRootView(MainActivity.this);
         }
       }
     );

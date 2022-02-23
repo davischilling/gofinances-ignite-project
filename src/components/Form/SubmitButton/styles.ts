@@ -1,19 +1,15 @@
 import { RFValue } from 'react-native-responsive-fontsize';
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 
 export default {
 
-Main: styled.View`
+Container: styled(RectButton)`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.secondary};
   
   padding: 18px;
   border-radius: 5px;
-`,
-
-Container: styled(RectButton)<RectButtonProps>`
-  width: 100%;
   align-items: center;
 `,
 

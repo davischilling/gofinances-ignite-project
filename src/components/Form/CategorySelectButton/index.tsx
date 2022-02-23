@@ -3,7 +3,6 @@ import { RectButtonProps } from 'react-native-gesture-handler'
 
 import styles from './styles'
 const {
-  Main,
   Container,
   Category,
   Icon
@@ -15,7 +14,6 @@ interface CategorySelectButtonProps extends RectButtonProps {
 
 export function CategorySelectButton({ title, ...rest }: CategorySelectButtonProps) {
   return (
-    <Main>
       <Container
         {...rest}
         activeOpacity={0.7}
@@ -23,6 +21,5 @@ export function CategorySelectButton({ title, ...rest }: CategorySelectButtonPro
         <Category>{ title }</Category>
         <Icon name="chevron-down" />
       </Container>
-    </Main>
   )
 }

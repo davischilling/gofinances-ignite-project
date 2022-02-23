@@ -7,6 +7,8 @@ import {
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import uuid from 'react-native-uuid'
+import { useNavigation } from '@react-navigation/native'
 
 import {
   CategorySelectButton,
@@ -16,6 +18,10 @@ import {
 import { CategoriesModal } from './CategoriesModal'
 import { Input, schema } from './HookForm'
 import styles from './styles'
+import {
+  saveItemDataAsyncStorage,
+  GoFinancesKeys
+} from '../../utils'
 
 const {
     Container,
@@ -30,21 +36,24 @@ interface FormData {
   [name: string]: any
 }
 
-export function Register() {
-  const [transactionType, setTransactionType] = useState<'up' | 'down' | ''>('')
-  const [categoryModalOpen, setCategoryModalOpen] = useState<boolean>(false)
-  const [category, setCategory] = useState({
-    key: 'category',
-    name: 'Categoria'
-  })
+type NavigationProps = {
+  navigate:(screen:string) => void;
+}
 
+export function Register() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
   })
+  const navigation = useNavigation<NavigationProps>()
+
+  const [transactionType, setTransactionType] = useState<'up' | 'down' | ''>('')
+  const [categoryModalOpen, setCategoryModalOpen] = useState<boolean>(false)
+  const [category, setCategory] = useState({ key: 'category', name: 'Categoria' })
 
   const handleTransactionTypeSelect = (type: 'up' | 'down') => {
     setTransactionType(type)
@@ -58,21 +67,32 @@ export function Register() {
     setCategoryModalOpen(true)
   }
 
-  const handleFormSubmit = (form: FormData) => {
+  const handleFormSubmit = async (form: FormData) => {
     if (!transactionType)
       return Alert.alert('Selecione o tipo da transação')
     if (category.key === 'category')
       return Alert.alert('Selecione a categoria')
 
-    const data = {
+    const newTransaction = {
+      id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
       transactionType,
-      category: category.key
+      category: category.key,
+      date: new Date()
     }
-    console.log(data);
+    
+    try {
+      await saveItemDataAsyncStorage(GoFinancesKeys.transactions, newTransaction)
+      reset()
+      setTransactionType('')
+      setCategory({ key: 'category', name: 'Categoria' })
+      navigation.navigate('Listagem')
+    } catch(err) {
+      console.log(err);
+      Alert.alert("Nao foi possivel salvar")
+    }
   }
-
 
   return (
     <TouchableWithoutFeedback
